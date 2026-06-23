@@ -1,37 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:start_once_again/screens/nav_menu.dart';
 
-PreferredSizeWidget buildAppBar(BuildContext context) {
-  return AppBar(
-    backgroundColor: const Color(0xFF1A1F3A),
-    elevation: 0,
-    title: Row(
-      children: [
-        buildLogoContainer(),
-        SizedBox(width: 12),
-        Text(
-          'Developer & Digtal Marketer',
-          style: TextStyle(
-            fontSize: 14,
-            color: Colors.white,
-            letterSpacing: 1.5,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ],
-    ),
-    actions: MediaQuery.of(context).size.width > 1100
-        ? [
-            NavItem(label: 'Home'),
-            NavItem(label: 'About'),
-            NavItem(label: 'Services'),
-            NavItem(label: 'Trainings'),
-            NavItem(label: 'Contact Us'),
-            buildWhatsappButton(),
-          ]
-        : [IconButton(icon: const Icon(Icons.menu), onPressed: () {})],
-  );
-}
+// PreferredSizeWidget buildAppBar(BuildContext context) {
+//   return AppBar(
+//     backgroundColor: const Color(0xFF1A1F3A),
+//     elevation: 0,
+//     title: Row(
+//       children: [
+//         buildLogoContainer(),
+//         SizedBox(width: 12),
+//         Text(
+//           'Developer & Digtal Marketer',
+//           style: TextStyle(
+//             fontSize: 14,
+//             color: Colors.white,
+//             letterSpacing: 1.5,
+//             fontWeight: FontWeight.bold,
+//           ),
+//         ),
+//       ],
+//     ),
+//     actions: MediaQuery.of(context).size.width > 1100
+//         ? [
+//             GestureDetector(
+//               onTap: () {},
+//               child: NavItem(label: 'Home'),
+//             ),
+//             NavItem(label: 'About'),
+//             NavItem(label: 'Services'),
+//             NavItem(label: 'Trainings'),
+//             NavItem(label: 'Contact Us'),
+//             buildWhatsappButton(),
+//           ]
+//         : [IconButton(icon: const Icon(Icons.menu), onPressed: () {})],
+//   );
+// }
 
 Widget buildLogoContainer() {
   return Container(

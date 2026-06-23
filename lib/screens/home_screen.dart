@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:start_once_again/screens/about_us.dart';
+import 'package:start_once_again/screens/nav_menu.dart';
 import 'package:start_once_again/widgets/logo_container.dart';
 import 'package:start_once_again/widgets/premium_heading.dart';
 import 'package:start_once_again/widgets/profile.dart';
@@ -22,6 +24,30 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late Animation<double> _imageScaleAnimation;
   late Animation<double> _imageRotateAnimation;
   late Animation<double> _parallaxAnimation;
+  List<GlobalKey> navigatorKeys = [
+    GlobalKey(),
+    GlobalKey(),
+    GlobalKey(),
+    GlobalKey(),
+    GlobalKey(),
+  ];
+  final scrollController = ScrollController();
+
+  void scrollToSection(GlobalKey key) {
+    final context = key.currentContext;
+
+    if (context == null) return;
+
+    final box = context.findRenderObject() as RenderBox;
+
+    final position = box.localToGlobal(Offset.zero).dy;
+
+    scrollController.animateTo(
+      scrollController.offset + position,
+      duration: const Duration(milliseconds: 800),
+      curve: Curves.easeInOut,
+    );
+  }
 
   @override
   void initState() {
@@ -102,7 +128,61 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context),
+      // appBar: buildAppBar(context),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF1A1F3A),
+        elevation: 0,
+        title: Row(
+          children: [
+            buildLogoContainer(),
+            SizedBox(width: 12),
+            Text(
+              'Developer & Digtal Marketer',
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.white,
+                letterSpacing: 1.5,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        actions: MediaQuery.of(context).size.width > 1100
+            ? [
+                GestureDetector(
+                  onTap: () {
+                    scrollToSection(navigatorKeys[0]);
+                  },
+                  child: NavItem(label: 'Home'),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    scrollToSection(navigatorKeys[1]);
+                  },
+                  child: NavItem(label: 'About Us'),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    scrollToSection(navigatorKeys[2]);
+                  },
+                  child: NavItem(label: 'Services'),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    scrollToSection(navigatorKeys[3]);
+                  },
+                  child: NavItem(label: 'Trainings'),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    scrollToSection(navigatorKeys[4]);
+                  },
+                  child: NavItem(label: 'Contact Us'),
+                ),
+                buildWhatsappButton(),
+              ]
+            : [IconButton(icon: const Icon(Icons.menu), onPressed: () {})],
+      ),
       body: FadeTransition(
         opacity: _mainFadeAnimation,
         child: Container(
@@ -112,26 +192,55 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               // Mobile & Tablet
               if (constraints.maxWidth < 1000) {
                 return SingleChildScrollView(
+                  controller: scrollController,
                   child: Padding(
-                    padding: const EdgeInsets.all(20),
+                    padding: EdgeInsets.all(20),
                     child: Column(
+                      mainAxisSize: MainAxisSize.max,
                       children: [
-                        buildLeftContent(
-                          _contentSlideAnimation,
-                          _mainFadeAnimation,
-                          _imageScaleAnimation,
-                          context,
-                        ),
-                        const SizedBox(height: 40),
+                        Container(
+                          key: navigatorKeys[0],
+                          decoration: BoxDecoration(),
+                          child: Column(
+                            children: [
+                              buildLeftContent(
+                                _contentSlideAnimation,
+                                _mainFadeAnimation,
+                                _imageScaleAnimation,
+                                context,
+                              ),
+                              const SizedBox(height: 40),
 
-                        SizedBox(
-                          height: 400,
-                          child: buildRightImage(
-                            _parallaxAnimation,
-                            _imageRotateAnimation,
-                            _imageScaleAnimation,
-                            _mainFadeAnimation,
+                              SizedBox(
+                                height: 400,
+                                child: buildRightImage(
+                                  _parallaxAnimation,
+                                  _imageRotateAnimation,
+                                  _imageScaleAnimation,
+                                  _mainFadeAnimation,
+                                ),
+                              ),
+                            ],
                           ),
+                        ),
+                        Container(
+                          key: navigatorKeys[1],
+                          child: AboutUsScreen(),
+                        ),
+                        Container(
+                          key: navigatorKeys[2],
+
+                          child: const Center(child: Text('Location')),
+                        ),
+                        Container(
+                          key: navigatorKeys[3],
+
+                          child: const Center(child: Text('Contact')),
+                        ),
+                        Container(
+                          key: navigatorKeys[4],
+
+                          child: const Center(child: Text('Footer')),
                         ),
                       ],
                     ),
@@ -140,38 +249,75 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               }
 
               // Desktop
-              return Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 40,
-                  vertical: 40,
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 5,
-                      child: buildLeftContent(
-                        _contentSlideAnimation,
-                        _mainFadeAnimation,
-                        _imageScaleAnimation,
-                        context,
-                      ),
-                    ),
+              return SingleChildScrollView(
+                controller: scrollController,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 40,
+                    vertical: 40,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Container(
+                        height: 600,
+                        key: navigatorKeys[0],
+                        decoration: BoxDecoration(),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 5,
+                              child: buildLeftContent(
+                                _contentSlideAnimation,
+                                _mainFadeAnimation,
+                                _imageScaleAnimation,
+                                context,
+                              ),
+                            ),
 
-                    const SizedBox(width: 40),
+                            const SizedBox(width: 40),
 
-                    Expanded(
-                      flex: 4,
-                      child: SizedBox(
-                        height: 500,
-                        child: buildRightImage(
-                          _parallaxAnimation,
-                          _imageRotateAnimation,
-                          _imageScaleAnimation,
-                          _mainFadeAnimation,
+                            Expanded(
+                              flex: 4,
+                              child: SizedBox(
+                                height: 500,
+                                child: buildRightImage(
+                                  _parallaxAnimation,
+                                  _imageRotateAnimation,
+                                  _imageScaleAnimation,
+                                  _mainFadeAnimation,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ),
-                  ],
+                      Container(
+                        height: 600,
+                        decoration: BoxDecoration(),
+                        key: navigatorKeys[1],
+                        child: AboutUsScreen(),
+                      ),
+                      Container(
+                        key: navigatorKeys[2],
+                        height: 600,
+                        decoration: BoxDecoration(),
+                        child: const Center(child: Text('Location')),
+                      ),
+                      Container(
+                        key: navigatorKeys[3],
+                        height: 600,
+                        decoration: BoxDecoration(),
+                        child: const Center(child: Text('Contact')),
+                      ),
+                      Container(
+                        key: navigatorKeys[4],
+                        height: 600,
+                        decoration: BoxDecoration(),
+                        child: const Center(child: Text('Footer')),
+                      ),
+                    ],
+                  ),
                 ),
               );
             },

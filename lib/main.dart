@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:start_once_again/controllers/about_provider.dart';
 import 'package:start_once_again/controllers/nav_provider.dart';
 import 'package:start_once_again/screens/home_screen.dart';
 
@@ -13,7 +14,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (context) => NavProvider())],
+      providers: [
+        ChangeNotifierProvider(create: (context) => NavProvider()),
+        ChangeNotifierProvider(create: (_) => AboutUsProvider()),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Rahmat Ullah - Digital Marketer',
