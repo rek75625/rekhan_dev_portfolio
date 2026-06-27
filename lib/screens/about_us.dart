@@ -9,8 +9,8 @@ class AboutUsScreen extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      color: const Color(0xFFF5F5F5),
-      padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 80),
+      color: Colors.white,
+      padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 60),
       child: width > 900 ? const DesktopAbout() : const MobileAbout(),
     );
   }
@@ -25,7 +25,7 @@ class DesktopAbout extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Expanded(flex: 5, child: LeftImagesSection()),
-        const SizedBox(width: 80),
+        const SizedBox(width: 60),
         Expanded(flex: 6, child: RightContentSection()),
       ],
     );
@@ -42,8 +42,8 @@ class LeftImagesSection extends StatelessWidget {
       child: Stack(
         children: [
           Positioned(
-            left: 50,
-            top: 30,
+            left: 0,
+            top: 0,
             child: Image.asset('assets/images/rekhan.jpg', width: 120),
           ),
 
@@ -71,7 +71,7 @@ class LeftImagesSection extends StatelessWidget {
 
           Positioned(
             left: 0,
-            bottom: 80,
+            bottom: 30,
             child: Container(
               width: 250,
               height: 250,
@@ -85,43 +85,43 @@ class LeftImagesSection extends StatelessWidget {
             ),
           ),
 
-          Positioned(
-            left: 160,
-            bottom: 80,
-            child: Container(
-              width: 220,
-              height: 85,
-              decoration: BoxDecoration(
-                color: Color(0xFFE6E63A),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.workspace_premium,
-                    size: 42,
-                    color: Colors.black,
-                  ),
-                  const SizedBox(width: 10),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        "250+",
-                        style: TextStyle(
-                          fontSize: 34,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text("Project Complete", style: TextStyle(fontSize: 16)),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
+          // Positioned(
+          //   left: 160,
+          //   bottom: 80,
+          //   child: Container(
+          //     width: 220,
+          //     height: 85,
+          //     decoration: BoxDecoration(
+          //       color: Color(0xFFE6E63A),
+          //       borderRadius: BorderRadius.circular(8),
+          //     ),
+          //     child: Row(
+          //       mainAxisAlignment: MainAxisAlignment.center,
+          //       children: [
+          //         const Icon(
+          //           Icons.workspace_premium,
+          //           size: 42,
+          //           color: Colors.black,
+          //         ),
+          //         const SizedBox(width: 10),
+          //         Column(
+          //           mainAxisAlignment: MainAxisAlignment.center,
+          //           crossAxisAlignment: CrossAxisAlignment.start,
+          //           children: const [
+          //             Text(
+          //               "250+",
+          //               style: TextStyle(
+          //                 fontSize: 34,
+          //                 fontWeight: FontWeight.bold,
+          //               ),
+          //             ),
+          //             Text("Project Complete", style: TextStyle(fontSize: 16)),
+          //           ],
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
@@ -136,38 +136,38 @@ class RightContentSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           "ABOUT US",
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
 
-        const SizedBox(height: 10),
+        SizedBox(height: 20),
 
-        const Text(
-          "Driving Digital Growth Strategist &\nBusiness Development Expert",
+        Text(
+          "Digital Driving Growth Strategist,\nBusiness & Mobile App Development Expert",
           style: TextStyle(
-            fontSize: 35,
+            fontSize: 30,
             color: Colors.black,
             fontWeight: FontWeight.bold,
             height: 1.25,
           ),
         ),
 
-        const SizedBox(height: 30),
+        SizedBox(height: 30),
 
-        const Text(
-          "RahmatUllah delivers strategic digital marketing & mobible app development solutions "
-          "that empower business or brands to grow through data-driven campaigns, "
-          "performance optimization, and result oriented methods focused "
+        Text(
+          "RahmatUllah delivers strategic digital marketing & mobile app development solutions "
+          "that empower business to grow through data-driven campaigns, "
+          "performance optimization, and result focused "
           "on sustainable business growth success outcomes.",
           style: TextStyle(fontSize: 16, height: 1.8, color: Color(0xFF444444)),
         ),
 
-        const SizedBox(height: 20),
+        SizedBox(height: 30),
 
-        Container(height: 1, color: Colors.grey.shade300),
+        Container(height: 2, color: Colors.grey.shade300),
 
-        const SizedBox(height: 20),
+        SizedBox(height: 30),
 
         Row(
           children: [
@@ -175,17 +175,26 @@ class RightContentSection extends StatelessWidget {
               child: Column(
                 children: const [
                   FeatureItem("Digital marketing strategy expert"),
-                  SizedBox(height: 25),
-                  FeatureItem("Brand development and positioning"),
+                  SizedBox(height: 20),
+                  FeatureItem("Brand development & positioning"),
+                  SizedBox(height: 20),
+                  FeatureItem("Mobile app development & design"),
+                  SizedBox(height: 20),
+                  FeatureItem("Business growth & scaling"),
                 ],
               ),
             ),
+            SizedBox(width: 10),
             Expanded(
               child: Column(
                 children: const [
-                  FeatureItem("Performance and growth specialist"),
-                  SizedBox(height: 25),
-                  FeatureItem("Lead generation and funnels"),
+                  FeatureItem("Performance marketing & optimization"),
+                  SizedBox(height: 20),
+                  FeatureItem("Data-driven decision making"),
+                  SizedBox(height: 20),
+                  FeatureItem("Python, Django Development"),
+                  SizedBox(height: 20),
+                  FeatureItem("Lead generation & funnels"),
                 ],
               ),
             ),
@@ -206,18 +215,18 @@ class FeatureItem extends StatelessWidget {
     return Row(
       children: [
         Container(
-          width: 24,
-          height: 24,
+          width: 20,
+          height: 20,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            border: Border.all(color: Color(0xFFE6E63A)),
+            border: Border.all(color: Colors.black),
           ),
-          child: const Icon(Icons.check, size: 15, color: Color(0xFFE6E63A)),
+          child: const Icon(Icons.check, size: 15, color: Colors.black),
         ),
 
-        const SizedBox(width: 15),
+        const SizedBox(width: 10),
 
-        Expanded(child: Text(text, style: const TextStyle(fontSize: 18))),
+        Expanded(child: Text(text, style: const TextStyle(fontSize: 16))),
       ],
     );
   }

@@ -128,7 +128,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: buildAppBar(context),
       appBar: AppBar(
         backgroundColor: const Color(0xFF1A1F3A),
         elevation: 0,
@@ -253,7 +252,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 controller: scrollController,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 40,
+                    horizontal: 0,
                     vertical: 40,
                   ),
                   child: Column(
